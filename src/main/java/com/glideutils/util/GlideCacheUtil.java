@@ -16,7 +16,6 @@ import java.math.BigDecimal;
  * date: 2017/3/27
  */
 public class GlideCacheUtil {
-    //HT
     private static GlideCacheUtil mInstance;
     private static Context mContext;
 
