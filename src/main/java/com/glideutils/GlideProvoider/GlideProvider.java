@@ -1,11 +1,12 @@
-package lib.self.network.image.glide.GlideProvoider;
+package com.glideutils.GlideProvoider;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
 import android.widget.ImageView;
 
-import lib.self.network.image.glide.transform.BaseTransform;
+import com.glideutils.transform.BaseTransform;
+
 
 /**
  * description:

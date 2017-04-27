@@ -1,4 +1,4 @@
-package lib.self.network.image.glide.GlideProvoider;
+package com.glideutils.GlideProvoider;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.glideutils.transform.BaseTransform;
 
-import lib.self.network.image.glide.transform.BaseTransform;
 
 /**
  * description: 提供Glide加载网络url的加载方式

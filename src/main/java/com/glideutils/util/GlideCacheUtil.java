@@ -1,15 +1,14 @@
-package lib.self.network.image.glide.util;
+package com.glideutils.util;
 
-import android.app.Application;
+import android.content.Context;
 import android.os.Looper;
 
 import com.bumptech.glide.Glide;
+import com.glideutils.GlideConfig.GlideConfig;
 
 import java.io.File;
 import java.math.BigDecimal;
 
-import lib.self.AppEx;
-import lib.self.network.image.glide.GlideConfig.GlideConfig;
 
 /**
  * description: Glide清除缓存工具类
@@ -17,26 +16,26 @@ import lib.self.network.image.glide.GlideConfig.GlideConfig;
  * date: 2017/3/27
  */
 public class GlideCacheUtil {
-    private static GlideCacheUtil instance;
-    private static Application appEx;
+    private static GlideCacheUtil mInstance;
+    private static Context mContext;
 
-    public static GlideCacheUtil getInstance() {
-        if (null == instance) {
-            instance = new GlideCacheUtil();
-            appEx = AppEx.getInstance();
+    public static GlideCacheUtil getInstance(Context context) {
+        if (null == mInstance) {
+            mInstance = new GlideCacheUtil();
+            mContext = context;
         }
-        return instance;
+        return mInstance;
     }
 
     public static void free() {
-        instance = null;
-        appEx = null;
+        mInstance = null;
+        mContext = null;
     }
 
     // 获取Glide磁盘缓存大小
-    public String getCacheSize(AppEx appEx) {
+    public String getCacheSize() {
         try {
-            return getFormatSize(getFolderSize(new File(appEx.getCacheDir() + "/" + GlideConfig.GLIDE_CARCH_DIR)));
+            return getFormatSize(getFolderSize(new File(mContext.getCacheDir() + "/" + GlideConfig.GLIDE_CARCH_DIR)));
         } catch (Exception e) {
             e.printStackTrace();
             return "获取失败";
@@ -45,7 +44,7 @@ public class GlideCacheUtil {
 
     // 清除Glide磁盘缓存，自己获取缓存文件夹并删除方法
     public boolean cleanCatchDisk() {
-        return deleteFolderFile(appEx.getCacheDir() + "/" + GlideConfig.GLIDE_CARCH_DIR, true);
+        return deleteFolderFile(mContext.getCacheDir() + "/" + GlideConfig.GLIDE_CARCH_DIR, true);
     }
 
     // 清除图片磁盘缓存，调用Glide自带方法
@@ -55,11 +54,11 @@ public class GlideCacheUtil {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Glide.get(appEx).clearDiskCache();
+                        Glide.get(mContext).clearDiskCache();
                     }
                 }).start();
             } else {
-                Glide.get(appEx).clearDiskCache();
+                Glide.get(mContext).clearDiskCache();
             }
             return true;
         } catch (Exception e) {
@@ -72,7 +71,7 @@ public class GlideCacheUtil {
     public boolean clearCacheMemory() {
         try {
             if (Looper.myLooper() == Looper.getMainLooper()) { //只能在主线程执行
-                Glide.get(appEx).clearMemory();
+                Glide.get(mContext).clearMemory();
                 return true;
             }
         } catch (Exception e) {

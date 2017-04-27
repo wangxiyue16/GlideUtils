@@ -1,4 +1,4 @@
-package lib.self.network.image.glide.transform;
+package com.glideutils.transform;
 
 import android.content.Context;
 import android.graphics.Bitmap;

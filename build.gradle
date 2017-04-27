@@ -22,8 +22,8 @@ android {
     }
 }
 
-def siteUrl = 'https://github.com/wangxiyue16/OkhttpUtils-packaing' // 项目的主页
-def gitUrl = 'https://github.com/wangxiyue16/OkhttpUtils-packaing.git' // Git仓库的url
+def siteUrl = 'https://github.com/wangxiyue16/GlideUtils' // 项目的主页
+def gitUrl = 'https://github.com/wangxiyue16/GlideUtils.git' // Git仓库的url
 group = "com.wangyue" // Maven Group ID for the artifact，一般填你唯一的包名
 
 install {
@@ -33,7 +33,7 @@ install {
             project {
                 packaging 'aar'
                 // Add your description here
-                name 'okhttputils_packaing' //项目名称
+                name 'GlideUtils' //项目名称
                 url siteUrl
                 // Set your license
                 licenses {
@@ -88,7 +88,7 @@ bintray {
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "okhttputils-packaing" //发布到JCenter上的项目名字
+        name = "GlideUtils" //发布到JCenter上的项目名字
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
@@ -98,10 +98,12 @@ bintray {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:support-annotations:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
 
     //--------- Glide相关 -----------//
     //使用glide需要后面的防混淆（-keep public class * implements com.bumptech.glide.module.GlideModule）
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    //集成 OkHttp 作为Glide 的网络库(其实还需要导入okhttp的库，但是自己的LibNetwork已经集成了，这里就不用单加了)
-    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0'
+    //集成 OkHttp 作为Glide 的网络库(其实还需要导入okhttp的库，但是该库只是图片加载库,所以okhttp这个库就放在项目里面导入)
+//    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0'
 }
