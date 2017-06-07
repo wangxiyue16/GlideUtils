@@ -82,7 +82,7 @@ public class GlideCacheUtil {
 
 
     // 获取指定文件夹内所有文件大小的和
-    private long getFolderSize(File file) throws Exception {
+    public long getFolderSize(File file) throws Exception {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
@@ -100,7 +100,7 @@ public class GlideCacheUtil {
     }
 
     // 格式化单位
-    private static String getFormatSize(double size) {
+    public static String getFormatSize(double size) {
         double kiloByte = size / 1024;
         if (kiloByte < 1) {
             return size + "Byte";
@@ -125,7 +125,7 @@ public class GlideCacheUtil {
     }
 
     // 按目录删除文件夹文件方法
-    private boolean deleteFolderFile(String filePath, boolean deleteThisPath) {
+    public boolean deleteFolderFile(String filePath, boolean deleteThisPath) {
         try {
             File file = new File(filePath);
             if (file.isDirectory()) {
